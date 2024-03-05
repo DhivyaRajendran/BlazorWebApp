@@ -1,0 +1,12 @@
+﻿
+<tr>
+    <GridCell Value="@forecast.Date.ToShortDateString()"></GridCell>
+    <GridCell Value="@forecast.TemperatureC.ToString()"></GridCell>
+    <GridCell Value="@forecast.TemperatureF.ToString()"></GridCell>
+    <GridCell Value="@forecast.Summary.ToString()"></GridCell>
+</tr>
+
+@code {
+    [Parameter]
+    public WeatherForecast forecast { get; set; }
+}

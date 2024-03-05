@@ -1,0 +1,22 @@
+﻿@if (Data != null)
+{
+    @foreach (var forecast in Data)
+{
+        <GridRow forecast="forecast"></GridRow>
+}
+}
+
+@code {
+
+
+    [CascadingParameter(Name ="GridData")]
+    public WeatherForecast[]? DataSource { get; set; }
+    public WeatherForecast[]? Data { get; set; } =  null;
+
+    protected override void OnInitialized()
+    {
+        // Accessing the cascading value in the OnInitialized lifecycle method
+        Data = DataSource;
+
+    }
+}

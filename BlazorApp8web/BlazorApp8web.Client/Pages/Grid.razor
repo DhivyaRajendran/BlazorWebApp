@@ -1,0 +1,32 @@
+﻿
+<div>
+    <CascadingValue Value="Data" Name="GridData">
+<table class="table">
+    <GridHeader></GridHeader>
+    <tbody>
+      <GridContent></GridContent>
+    </tbody>
+</table>
+    </CascadingValue>
+</div>
+
+@code {
+
+    [Parameter]
+    public WeatherForecast[]? DataSource { get; set; }
+
+    public WeatherForecast[]? Data { get; set; }
+
+
+    private bool ShowGrid { get; set; }
+
+    private void Toggle()
+    {
+        ShowGrid = !ShowGrid;
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        Data = DataSource;  
+    }
+}

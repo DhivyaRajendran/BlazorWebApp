@@ -1,0 +1,52 @@
+﻿@page "/multiplegrid"
+
+@rendermode InteractiveWebAssembly
+
+@using BlazorApp8web.Client.Pages
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates Multiple Table.</p>
+
+<button @onclick="Toggle">Toggle grid </button>
+
+
+@if (ShowGrid && forecasts != null)
+{
+    <Grid DataSource="forecasts"></Grid>
+    <Grid DataSource="forecasts"></Grid>
+    <Grid DataSource="forecasts"></Grid>
+    <Grid DataSource="forecasts"></Grid>
+    <Grid DataSource="forecasts"></Grid>
+    <Grid DataSource="forecasts"></Grid>
+    <Grid DataSource="forecasts"></Grid>
+    <Grid DataSource="forecasts"></Grid>
+    <Grid DataSource="forecasts"></Grid>
+    <Grid DataSource="forecasts"></Grid>
+}
+
+@code {
+    private WeatherForecast[]? forecasts;
+
+    private bool ShowGrid { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Simulate asynchronous loading to demonstrate streaming rendering
+        await Task.Delay(500);
+
+        var startDate = DateOnly.FromDateTime(DateTime.Now);
+        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
+        forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            {
+                Date = startDate.AddDays(index),
+                TemperatureC = Random.Shared.Next(-20, 55),
+                Summary = summaries[Random.Shared.Next(summaries.Length)]
+            }).ToArray();
+    }
+
+    private void Toggle()
+    {
+        ShowGrid = !ShowGrid;
+    }
+}

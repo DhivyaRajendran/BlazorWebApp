@@ -1,0 +1,11 @@
+﻿
+<tr>
+    @foreach (var HeaderText in Headers)
+    {
+        <HeaderCell Header=@HeaderText></HeaderCell>
+    }
+</tr>
+
+@code {
+    List<string> Headers = new List<string>() { "Date", "Temp. (C)", "Temp. (F)", "Summary" };
+}
